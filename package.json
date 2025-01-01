@@ -1,0 +1,80 @@
+{
+  "name": "debarrel",
+  "displayName": "debarrel - Barreless auto imports",
+  "description": "Debar/Exclude/Ignore/Delete all barrels from auto import",
+  "publisher": "technikhil314",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/technikhil314/debarrel.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technikhil314/debarrel/issues"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:debarrelify"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "debarrel.debarrelify",
+        "title": "Debarrel (force barrel recalculation)"
+      }
+    ],
+    "configuration": {
+      "title": "debarrel",
+      "properties": {
+        "defarrel.depth": {
+          "type": "number",
+          "default": 1,
+          "description": "How deep should the plugin traverse in node_modules?"
+        },
+        "typescript.refreshInterval": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "default": null,
+          "description": "Whether to auto recalculate barrel setting every few interval time. Set any number to enable."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "esbuild": "^0.24.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
