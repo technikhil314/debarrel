@@ -32,24 +32,39 @@
       }
     ],
     "configuration": {
-      "title": "debarrel",
+      "title": "Debarrel",
       "properties": {
-        "defarrel.depth": {
-          "type": "number",
-          "default": 1,
-          "description": "How deep should the plugin traverse in node_modules?"
-        },
-        "typescript.refreshInterval": {
+        "debarrel.refreshInterval": {
           "type": [
             "number",
             "null"
           ],
           "default": null,
           "description": "Whether to auto recalculate barrel setting every few interval time. Set any number to enable."
+        },
+        "debarrel.privacy.sharedConfig": {
+          "type": [
+            "boolean"
+          ],
+          "default": true,
+          "description": "Whether to push barrel list to public gist"
+        },
+        "debarrel.cache": {
+          "type": [
+            "boolean"
+          ],
+          "default": true,
+          "description": "Whether to cache the list in node_modules/.cache/debarrel/cache"
+        },
+        "debarrel.enableDebugLogs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Helpful when sharing issues on github"
         }
       }
     }
   },
+  "icon": "icon.png",
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
