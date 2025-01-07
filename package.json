@@ -34,28 +34,6 @@
     "configuration": {
       "title": "Debarrel",
       "properties": {
-        "debarrel.refreshInterval": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "default": null,
-          "description": "Whether to auto recalculate barrel setting every few interval time. Set any number to enable."
-        },
-        "debarrel.privacy.sharedConfig": {
-          "type": [
-            "boolean"
-          ],
-          "default": true,
-          "description": "Whether to push barrel list to public gist"
-        },
-        "debarrel.cache": {
-          "type": [
-            "boolean"
-          ],
-          "default": true,
-          "description": "Whether to cache the list in node_modules/.cache/debarrel/cache"
-        },
         "debarrel.enableDebugLogs": {
           "type": "boolean",
           "default": true,
