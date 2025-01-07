@@ -1,4 +1,6 @@
 .vscode/**
+.husky/**
+commitlint.config.js
 .vscode-test/**
 out/**
 node_modules/**
