@@ -106,7 +106,7 @@ class Logger {
    */
   private logMessage(message: string, logLevel: LogLevel): void {
     const title = new Date().toLocaleTimeString();
-    const text = `["${logLevel}" - ${title}] ${message}`
+    const text = `["${logLevel}" - ${title}] ${message}`;
     this.outputChannel.appendLine(text);
   }
 }

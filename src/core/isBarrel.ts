@@ -44,6 +44,6 @@ export default function isBarrel(filePath: string, tempDir: string) {
       hasOnlyReExports = false;
     }
   });
-  logger.logDebug("isBarrel.ts - barrel output", { filePath, hasOnlyReExports })
+  logger.logDebug("isBarrel.ts - barrel output", { filePath, hasOnlyReExports });
   return hasOnlyReExports;
 }

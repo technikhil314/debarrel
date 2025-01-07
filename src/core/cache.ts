@@ -1,11 +1,11 @@
 // cache should be workspace/folder agnostic as node_modules will be same across workspace
 const barrelFilesList = new Set<string>();
 export function add(value: string) {
-  barrelFilesList.add(value)
+  barrelFilesList.add(value);
 }
 
 export function has(value: string) {
-  return barrelFilesList.has(value)
+  return barrelFilesList.has(value);
 }
 
 export function getAll() {
@@ -13,7 +13,7 @@ export function getAll() {
 }
 
 export function evict(value: string) {
-  barrelFilesList.delete(value)
+  barrelFilesList.delete(value);
 }
 
 export function pushToRemote() {

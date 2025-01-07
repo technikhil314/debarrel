@@ -25,7 +25,7 @@ async function _activate() {
 		coreActivate(workspaceFolders[0]);
 	}
 	const newSetting = cache.getAll();
-	logger.logDebug("extension.ts - newSetting", { newSetting })
+	logger.logDebug("extension.ts - newSetting", { newSetting });
 	await vscode.workspace
 		.getConfiguration()
 		.update(
