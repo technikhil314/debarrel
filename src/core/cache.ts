@@ -4,7 +4,11 @@ export function add(value: string) {
   barrelFilesList.add(value)
 }
 
-export function get() {
+export function has(value: string) {
+  return barrelFilesList.has(value)
+}
+
+export function getAll() {
   return Array.from(barrelFilesList);
 }
 

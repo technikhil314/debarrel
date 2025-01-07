@@ -4,7 +4,6 @@ type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR" | "NONE";
 
 class Logger {
   private outputChannel = window.createOutputChannel("Debarrel");
-
   private logLevel: LogLevel = "INFO";
 
   public setOutputLevel(logLevel: LogLevel) {
@@ -97,7 +96,6 @@ class Logger {
     //   })
     //   .trim();
     const message = JSON.stringify(data, null, 2); // dont use prettier to keep it simple
-
     this.outputChannel.appendLine(message);
   }
 
@@ -108,7 +106,8 @@ class Logger {
    */
   private logMessage(message: string, logLevel: LogLevel): void {
     const title = new Date().toLocaleTimeString();
-    this.outputChannel.appendLine(`["${logLevel}" - ${title}] ${message}`);
+    const text = `["${logLevel}" - ${title}] ${message}`
+    this.outputChannel.appendLine(text);
   }
 }
 

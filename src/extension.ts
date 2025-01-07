@@ -6,12 +6,6 @@ import * as cache from "./core/cache";
 import logger from "./core/logger";
 
 async function _activate() {
-	const oldTsSetting = await vscode.workspace.getConfiguration(
-		"typescript.preferences.autoImportFileExcludePatterns"
-	);
-	const oldJsSetting = await vscode.workspace.getConfiguration(
-		"javascript.preferences.autoImportFileExcludePatterns"
-	);
 	const workspaceFolders = vscode.workspace.workspaceFolders;
 	if (!workspaceFolders) {
 		return;
@@ -22,7 +16,7 @@ async function _activate() {
 		logger.setOutputLevel("DEBUG");
 	}
 	const isMultiRootWorkspace = workspaceFolders?.length > 1;
-	logger.logDebug("is multi root", { isMultiRootWorkspace });
+	logger.logDebug("extension.ts - is multi root", { isMultiRootWorkspace });
 	if (isMultiRootWorkspace) {
 		workspaceFolders?.forEach((workspaceFolder) => {
 			coreActivate(workspaceFolder);
@@ -30,19 +24,20 @@ async function _activate() {
 	} else {
 		coreActivate(workspaceFolders[0]);
 	}
-	const newSetting = cache.get();
+	const newSetting = cache.getAll();
+	logger.logDebug("extension.ts - newSetting", { newSetting })
 	await vscode.workspace
 		.getConfiguration()
 		.update(
 			"typescript.preferences.autoImportFileExcludePatterns",
-			oldTsSetting.concat(newSetting),
+			newSetting,
 			vscode.ConfigurationTarget.Workspace
 		);
 	await vscode.workspace
 		.getConfiguration()
 		.update(
 			"javascript.preferences.autoImportFileExcludePatterns",
-			oldJsSetting.concat(newSetting),
+			newSetting,
 			vscode.ConfigurationTarget.Workspace
 		);
 }
@@ -52,7 +47,7 @@ async function _activate() {
 export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	logger.logInfo("Debarrel is now being activated");
+	vscode.window.showInformationMessage('Debarrel is now being activated');
 	_activate();
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -63,12 +58,11 @@ export function activate(context: vscode.ExtensionContext) {
 			// The code you place here will be executed every time your command is executed
 			// Display a message box to the user
 			_activate();
-			logger.logInfo("Debarrel is now force reactivated");
+			vscode.window.showInformationMessage("Debarrel is now being force reactivated");
 		}
 	);
-
 	context.subscriptions.push(disposable);
-	logger.logInfo("Debarrel is now completely active");
+	vscode.window.showInformationMessage("Debarrel is now completely active");
 }
 
 // This method is called when your extension is deactivated

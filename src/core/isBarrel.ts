@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "fs";
+import { join } from "path";
 import {
   createSourceFile,
   isClassDeclaration,
@@ -7,15 +8,18 @@ import {
   isFunctionDeclaration,
   isImportDeclaration,
   ScriptTarget,
-  SyntaxKind,
 } from "typescript";
-export default function isBarrel(filePath: string) {
+import logger from "./logger";
+
+export default function isBarrel(filePath: string, tempDir: string) {
   if (!existsSync(filePath)) {
     return false;
   }
   const sourceCode = readFileSync(filePath, "utf-8");
+  const uuid = crypto.randomUUID();
+  const tempFileName = join(tempDir, uuid);
   const sourceFile = createSourceFile(
-    filePath,
+    tempFileName,
     sourceCode,
     ScriptTarget.Latest,
     true
@@ -40,5 +44,6 @@ export default function isBarrel(filePath: string) {
       hasOnlyReExports = false;
     }
   });
+  logger.logDebug("isBarrel.ts - barrel output", { filePath, hasOnlyReExports })
   return hasOnlyReExports;
 }
