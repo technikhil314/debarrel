@@ -1,6 +1,7 @@
 # debarrel
 
-Debar/exclude/ignore barrel files automatically in vscode.
+Debar/exclude/ignore barrel files automatically from vscode auto import/intellisense.
+This extension blacklists all barrel files from vscode auto import setting
 
 # Why?
 
@@ -8,8 +9,8 @@ Importing (be it named imports) from barrel files hampers your bundle size very 
 
 ## Features
 
-1. Install this VSCode extension and it wont suggest you any barrel files in intellisense.
-2. This extension forgiving so it wont black list files its not able to detect as barrels
+1. Install this VSCode extension and vscode wont be able to suggest you any barrel files in intellisense.
+2. This extension is forgiving so it wont black list files its not able to detect as barrels
 
 ## How to install?
 
